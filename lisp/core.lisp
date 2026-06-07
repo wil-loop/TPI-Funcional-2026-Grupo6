@@ -6,25 +6,24 @@
 ;; ESTRATEGIA: Función aritmética simple
 ;; IMPACTO: No destructiva
 ;; =======================================================
-(defun duracion-ciclo()
-	(+ 90 6 120)
-	)
+(defun duracion-ciclo(rojo amarillo verde)
+	(print (+ rojo amarillo verde))
+	(recomendacion-ciclo(+ rojo amarillo verde))
+)
 
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
 ;; NATURALEZA: Pura (Para una misma duración de ciclo siempre devuelve la misma recomendación y no produce efectos secundarios)
-;; ESTRATEGIA: Función predicado / Condicional (Implementada mediante cond)
+;; ESTRATEGIA: Función Condicional simple (Implementada mediante cond)
 ;; IMPACTO: No destructiva
 ;; ========================================================
-(defun recomendacion-ciclo()
-	(let ((duracion (duracion-ciclo)))
-		(cond 
-			((< duracion 35)
-				"Ciclo demasiado corto")
-			((> duracion 150)
-				"Ciclo demasiado largo")
-			(t
-				"Ciclo en rango óptimo")
-		)
-	)
+(defun recomendacion-ciclo(duracion)
+	(cond 
+		((< duracion 35)
+			"Ciclo demasiado corto")
+		((> duracion 150)
+			"Ciclo demasiado largo")
+		(t
+			"Ciclo en rango óptimo")
+	)	
 )

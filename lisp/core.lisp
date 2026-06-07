@@ -1,9 +1,14 @@
-;; ============================================================
-;; FUNCION: ciclos-por-tiempo
-;; NATURALEZA: Pura (Dado un argumento, siempre le corresponde el mismo resultado)
-;; ESTRATEGIA:  Función aritmetica simple / Combinación de operaciones
-;; IMPACTO: no destructiva
-;; ============================================================ 
-(defun ciclos-por-tiempo (minutos)
-  	(nth-value 0(floor (* minutos 60) 216))
+;; REQUERIMIENTO 6
+
+;; ========================================================
+;; FUNCIÓN: distribucion-porcentual
+;; NATURALEZA: Pura (Siempre devuelve la misma distribución para las mismas reglas de temporización)
+;; ESTRATEGIA: Función aritmética simple
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun distribucion-porcentual(rojo amarillo verde)
+  (list
+    (list 'porcentaje-rojo (* (/ rojo  216.0) 100))
+    (list 'porcentaje-amarillo (* (/ amarillo  216.0) 100))
+    (list 'porcentaje-verde (* (/ verde 216.0) 100)))
   )

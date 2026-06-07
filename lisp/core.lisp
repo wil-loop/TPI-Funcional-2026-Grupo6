@@ -27,24 +27,22 @@
     (cond
       ((<= resto 89)'en-rojo)
       ((<= resto 95)'en-amarillo)
-      (t ' n-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
+      (t ' en-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
     )
   )
 )
 
-;; REQUERIMIENTO 3 -------PENDIENTE--------
+;; REQUERIMIENTO 3
+  ;; ============================================================
+  ;; FUNCION: log-transicion (o el nombre que prefieras)
+  ;; NATURALEZA: Con efectos secundarios (Imprime en la terminal de ejecucion)
+  ;; ESTRATEGIA: Uso de la funcion incorporada 'format' para salida de texto
+  ;; IMPACTO: No destructiva
+  ;; ============================================================ 
 
-
-
-
-
-
-
-
-
-
-
-
+(defun cambios-estado(tiempo-unix color-anterior color-nuevo)
+   (format t "Tiempo ~A: la luz ha cambiado de ~A a ~A~%" 
+        tiempo-unix color-anterior color-nuevo))
 
 
 ;; REQUERIMIENTO 4

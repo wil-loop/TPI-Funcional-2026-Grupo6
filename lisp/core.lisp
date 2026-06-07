@@ -1,14 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
+;; REQUERIMIENTO 2
 ;; ========================================================
 ;; FUNCIÓN: timer
 ;; NATURALEZA: Pura (Dado un timestamp devuelve siempre el mismo color)

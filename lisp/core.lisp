@@ -1,4 +1,4 @@
-	;; REQUERIMIENTO 1
+  ;; REQUERIMIENTO 1
 	;; ============================================================
 	;; FUNCION: transicion
 	;; NATURALEZA: pura (dado el color actual y al que se desea cambiar retorna una lista con el color actual y la accion a realzar)
@@ -9,13 +9,13 @@
 	(defun transicion (color-actual cambiar-a)
 		(cond 
 			((and(equal color-actual 'en-rojo) (equal cambiar-a 'amarillo)) '('en-rojo "cambiar-a-amarillo")) 
-			((and(equal color-actual 'en-amarillo) (equal cambiar-a 'verde) ) '('en-amarillo "cambiar-a-verde")) 
-			((and(equal color-actual 'en-verde) (equal cambiar-a 'rojo) ) '('en-verde "cambiar-a-rojo")) 
+			((and(equal color-actual 'en-amarillo) (equal cambiar-a 'verde)) '('en-amarillo "cambiar-a-verde")) 
+			((and(equal color-actual 'en-verde) (equal cambiar-a 'rojo)) '('en-verde "cambiar-a-rojo")) 
 			(t (list color-actual 'accion-por-defecto))
 			)
 		)
 
-;; REQUERIMIENTO 2
+  ;; REQUERIMIENTO 2
 ;; ========================================================
 ;; FUNCIÓN: timer
 ;; NATURALEZA: Pura (Dado un timestamp devuelve siempre el mismo color)
@@ -31,3 +31,46 @@
     )
   )
 )
+
+;; REQUERIMIENTO 3 -------PENDIENTE--------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; REQUERIMIENTO 4
+;; ========================================================
+;; FUNCIÓN: duracion-ciclo
+;; NATURALEZA: Pura (No produce efectos secundarios y siempre devuelve el mismo resultado)
+;; ESTRATEGIA: Función aritmética simple
+;; IMPACTO: No destructiva
+;; =======================================================
+(defun duracion-ciclo(rojo amarillo verde)
+	(print (+ rojo amarillo verde))
+	(recomendacion-ciclo(+ rojo amarillo verde))
+)
+
+;; ========================================================
+;; FUNCIÓN: recomendacion-ciclo
+;; NATURALEZA: Pura (Para una misma duración de ciclo siempre devuelve la misma recomendación y no produce efectos secundarios)
+;; ESTRATEGIA: Función Condicional simple (Implementada mediante cond)
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun recomendacion-ciclo(duracion)
+	(cond 
+		((< duracion 35)
+			"Ciclo demasiado corto")
+		((> duracion 150)
+			"Ciclo demasiado largo")
+		(t
+			"Ciclo en rango óptimo")
+	)	

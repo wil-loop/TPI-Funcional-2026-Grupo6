@@ -1,4 +1,4 @@
-
+	;; REQUERIMIENTO 1
 	;; ============================================================
 	;; FUNCION: transicion
 	;; NATURALEZA: pura (dado el color actual y al que se desea cambiar retorna una lista con el color actual y la accion a realzar)

@@ -102,17 +102,17 @@
 
 
 ;; -------------------------
-;; Ejemplos de transicion --- PENDIENTE
+;; Ejemplos de transicion 
 ;; -------------------------
 
 ;; Reglas actuales
-;; 
+;; (transicion 'en-rojo 'amarillo) (transicion 'en-amarillo 'verde) (transicion 'en-rojo 'verde)
 
 ;; Caso alternativo
-;; 
+;; (transicion 'en-verde 'amarillo) Caso contemplado de transicion invalida, no provoca un fallo en el programa
 
 ;; Caso inválido
-;; 
+;; (transicion 'en-verde) Uso inadecuado de la funcion (falta de parametros)
 
 
 

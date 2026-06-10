@@ -52,8 +52,7 @@
 ;; IMPACTO: No destructiva
 ;; =======================================================
 (defun duracion-ciclo(rojo amarillo verde)
-	(print (+ rojo amarillo verde))
-	(recomendacion-ciclo(+ rojo amarillo verde))
+	(+ rojo amarillo verde)
 )
 
 ;; ========================================================
@@ -70,7 +69,7 @@
 			"Ciclo demasiado largo")
 		(t
 			"Ciclo en rango óptimo")
-	)	
+	))
 
 ;; REQUERIMIENTO 5
 ;; ============================================================

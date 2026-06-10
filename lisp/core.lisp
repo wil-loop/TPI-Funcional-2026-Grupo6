@@ -166,13 +166,13 @@
 ;; -------------------------
 
 ;; Reglas actuales
-;; 
+;; (recomendacion-ciclo (duracion-ciclo 90 6 120))
 
 ;; Caso alternativo
-;; 
+;; (recomendacion-ciclo 216)
 
 ;; Caso inválido
-;; 
+;; (recomendacion-ciclo '(216))
 
 
 

@@ -70,7 +70,7 @@
 			"Ciclo demasiado largo")
 		(t
 			"Ciclo en rango óptimo")
-	)	
+	))	
 
 ;; REQUERIMIENTO 5
 ;; ============================================================
@@ -92,8 +92,115 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 (defun distribucion-porcentual(rojo amarillo verde)
-  (list
-    (list 'porcentaje-rojo (* (/ rojo  216.0) 100))
-    (list 'porcentaje-amarillo (* (/ amarillo  216.0) 100))
-    (list 'porcentaje-verde (* (/ verde 216.0) 100)))
-  )
+	  (list
+	    (list 'porcentaje-rojo (* (/ rojo  216.0) 100))
+	    (list 'porcentaje-amarillo (* (/ amarillo  216.0) 100))
+	    (list 'porcentaje-verde (* (/ verde 216.0) 100)))
+	  )
+
+
+;; REQUERIMIENTO 7: EJEMPLOS DE USO
+
+
+;; -------------------------
+;; Ejemplos de transicion --- PENDIENTE
+;; -------------------------
+
+;; Reglas actuales
+;; 
+
+;; Caso alternativo
+;; 
+
+;; Caso inválido
+;; 
+
+
+
+;; -------------------------
+;; Ejemplos de timer --- PENDIENTE
+;; -------------------------
+
+;; Reglas actuales
+;; 
+
+;; Caso alternativo
+;; 
+
+;; Caso inválido
+;; 
+
+
+
+;; -------------------------
+;; Ejemplos de cambios-estado --- PENDIENTE
+;; -------------------------
+
+;; Reglas actuales
+;; 
+
+;; Caso alternativo
+;; 
+
+;; Caso inválido
+;; 
+
+
+
+;; -------------------------
+;; Ejemplos de duracion-ciclo
+;; -------------------------
+
+;; Reglas actuales
+;; (duracion-ciclo 90 6 120)
+
+;; Caso alternativo
+;; (duracion-ciclo 60 6 60)
+
+;; Caso inválido
+;; (duracion-ciclo 60 20) Uso inadecuado de la funcion
+
+
+
+;; -------------------------
+;; Ejemplos de recomendacion-ciclo --- PENDIENTE
+;; -------------------------
+
+;; Reglas actuales
+;; 
+
+;; Caso alternativo
+;; 
+
+;; Caso inválido
+;; 
+
+
+
+;; -------------------------
+;; Ejemplos de ciclos-por-tiempo
+;; -------------------------
+
+;; Reglas actuales
+;; (ciclos-por-tiempo 15)
+
+;; Caso alternativo
+;; (ciclos-por-tiempo 60)
+
+;; Caso inválido
+;; (ciclos-por-tiempo '(20)) Uso inadecuado de la funcion
+
+
+
+;; -------------------------
+;; Ejemplos de distribucion-porcentual
+;; -------------------------
+
+;; Reglas actuales
+;; (distribucion-porcentual 90 6 120)
+
+;; Caso alternativo
+;; (distribucion-porcentual 60 5 70)
+
+;; Caso inválido
+;; (distribucion-porcentual 90 -6 120) Uso inadecuado de la funcion

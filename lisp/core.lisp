@@ -70,7 +70,7 @@
 			"Ciclo demasiado largo")
 		(t
 			"Ciclo en rango óptimo")
-	)	
+	))
 
 ;; REQUERIMIENTO 5
 ;; ============================================================
@@ -92,8 +92,9 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 (defun distribucion-porcentual(rojo amarillo verde)
-  (list
-    (list 'porcentaje-rojo (* (/ rojo  216.0) 100))
-    (list 'porcentaje-amarillo (* (/ amarillo  216.0) 100))
-    (list 'porcentaje-verde (* (/ verde 216.0) 100)))
-  )
+	(let ((total (+ rojo amarillo verde)))
+	  (list
+	    (list 'porcentaje-rojo (* (/ rojo  total) 100.0))
+	    (list 'porcentaje-amarillo (* (/ amarillo  total) 100.0))
+	    (list 'porcentaje-verde (* (/ verde total) 100.0)))
+	  ))

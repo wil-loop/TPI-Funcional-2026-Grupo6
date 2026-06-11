@@ -97,3 +97,30 @@
 	    (list 'porcentaje-amarillo (* (/ amarillo  total) 100.0))
 	    (list 'porcentaje-verde (* (/ verde total) 100.0)))
 	  ))
+
+
+;; ============================================================================
+;; ITERACIÓN 2 - EXTENSIÓN 2: PERSISTENCIA DE DATOS
+;; ============================================================================
+
+(defun informe (datos)
+  (with-open-file (stream "informe-ejecucion-semaforo.txt" 
+                          :direction :output 
+                          :if-exists :supersede        
+                          :if-does-not-exist :create)  
+    (format stream "Informe de Ejecución del Sistema Semafórico~%")
+    (format stream "=========================================~%")
+    
+    (mapcar #'(lambda (registro)
+                (format stream "~A - Transición: ~A → ~A~%" 
+                        (first registro)    
+                        (second registro)   
+                        (third registro)))  
+            datos)
+    
+    (format stream "~% --- Fin del Informe ---")nil))
+
+;; -------------------------
+;; Ejemplos de informe (Extensión 2)
+;; -------------------------
+;; Reglas actuales: (informe '((1717511415 en-rojo en-verde) (1717511535 en-verde en-amarillo)))

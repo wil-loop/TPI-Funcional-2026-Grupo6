@@ -8,9 +8,9 @@
 
 	(defun transicion (color-actual cambiar-a)
 		(cond 
-			((and(equal color-actual 'en-rojo) (equal cambiar-a 'amarillo)) '('en-rojo "cambiar-a-amarillo")) 
-			((and(equal color-actual 'en-amarillo) (equal cambiar-a 'verde)) '('en-amarillo "cambiar-a-verde")) 
-			((and(equal color-actual 'en-verde) (equal cambiar-a 'rojo)) '('en-verde "cambiar-a-rojo")) 
+			((and(equal color-actual 'en-rojo) (equal cambiar-a 'verde)) '('en-rojo "cambiar-a-verde")) 
+			((and(equal color-actual 'en-amarillo) (equal cambiar-a 'rojo)) '('en-amarillo "cambiar-a-rojo")) 
+			((and(equal color-actual 'en-verde) (equal cambiar-a 'amarillo)) '('en-verde "cambiar-a-amarillo")) 
 			(t (list color-actual 'accion-por-defecto))
 			)
 		)
@@ -26,8 +26,8 @@
   (let ((resto (mod tiempo-unix 216)))
     (cond
       ((<= resto 89)'en-rojo)
-      ((<= resto 95)'en-amarillo)
-      (t ' n-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
+      ((<= resto 95)'en-verde)
+      (t 'en-amarillo) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
     )
   )
 )
@@ -51,8 +51,8 @@
 ;; ESTRATEGIA: Función aritmética simple
 ;; IMPACTO: No destructiva
 ;; =======================================================
-(defun duracion-ciclo(rojo amarillo verde)
-	(+ rojo amarillo verde)
+(defun duracion-ciclo(rojo  verde amarillo)
+	(+ rojo verde amarillo)
 )
 
 ;; ========================================================
@@ -94,8 +94,8 @@
 	(let ((total (+ rojo amarillo verde)))
 	  (list
 	    (list 'porcentaje-rojo (* (/ rojo  total) 100.0))
-	    (list 'porcentaje-amarillo (* (/ amarillo  total) 100.0))
-	    (list 'porcentaje-verde (* (/ verde total) 100.0)))
+	    (list 'porcentaje-verde (* (/ verde total) 100.0))
+	   (list 'porcentaje-amarillo (* (/ amarillo  total) 100.0)))
 	  ))
 
 ;; REQUERIMIENTO 7: EJEMPLOS DE USO

@@ -203,3 +203,36 @@
 
 ;; Caso inválido
 ;; (distribucion-porcentual 90 -6 120) Uso inadecuado de la funcion
+
+;; ============================================================================
+;; ITERACIÓN 2 - EXTENSIÓN 2: PERSISTENCIA DE DATOS
+;; ============================================================================
+;; FUNCION: informe
+;; NATURALEZA: Impura (Efecto secundario: crea y escribe datos en un archivo físico externo)
+;; ESTRATEGIA: Funciones de orden superior (mapcar) combinadas con macros de E/S (with-open-file)
+;; IMPACTO: No destructiva (Procesa la lista de datos sin alterar la estructura original)
+;; ============================================================================
+ 
+;;===========================
+;; EXTENSION 2
+;;===========================
+
+(defun informe (datos)
+  (with-open-file (stream "informe-ejecucion-semaforo.txt" 
+                          :direction :output 
+                          :if-exists :supersede        
+                          :if-does-not-exist :create)  
+    (format stream "Informe de Ejecución del Sistema Semafórico~%")
+    (format stream "=========================================~%")
+    
+    (mapcar #'(lambda (registro)
+                (format stream "~A - Transición: ~A → ~A~%" 
+                        (first registro)    
+                        (second registro)   
+                        (third registro)))  
+            datos)
+    
+    (format stream "~% --- Fin del Informe ---")
+    nil)
+)
+

@@ -26,8 +26,8 @@
   (let ((resto (mod tiempo-unix 216)))
     (cond
       ((<= resto 89)'en-rojo)
-      ((<= resto 95)'en-verde)
-      (t 'en-amarillo) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
+      ((<= resto 95)'en-amarillo)
+      (t ' n-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
     )
   )
 )

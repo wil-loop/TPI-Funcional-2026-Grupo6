@@ -117,32 +117,32 @@
 
 
 ;; -------------------------
-;; Ejemplos de timer --- PENDIENTE
+;; Ejemplos de timer
 ;; -------------------------
 
 ;; Reglas actuales
-;; 
+;; (timer 20010)
 
 ;; Caso alternativo
-;; 
+;; (timer (+ 2215 211 ... n))
 
 ;; Caso inválido
-;; 
+;; (timer "string")
 
 
 
 ;; -------------------------
-;; Ejemplos de cambios-estado --- PENDIENTE
+;; Ejemplos de cambios-estado 
 ;; -------------------------
 
 ;; Reglas actuales
-;; 
+;; (cambios-estado "rojo" "verde")
 
 ;; Caso alternativo
-;; 
+;; (cambios-estado "verde" "amarillo")
 
 ;; Caso inválido
-;; 
+;; (cambios-estado rojo verde)
 
 
 
@@ -162,7 +162,7 @@
 
 
 ;; -------------------------
-;; Ejemplos de recomendacion-ciclo --- PENDIENTE
+;; Ejemplos de recomendacion-ciclo 
 ;; -------------------------
 
 ;; Reglas actuales

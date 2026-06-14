@@ -102,6 +102,11 @@
 ;; ============================================================================
 ;; ITERACIÓN 2 - EXTENSIÓN 2: PERSISTENCIA DE DATOS
 ;; ============================================================================
+;; FUNCION: informe
+;; NATURALEZA: Impura (Efecto secundario: crea y escribe datos en un archivo físico externo)
+;; ESTRATEGIA: Funciones de orden superior (mapcar) combinadas con macros de E/S (with-open-file)
+;; IMPACTO: No destructiva (Procesa la lista de datos sin alterar la estructura original)
+;; ============================================================================
 
 (defun informe (datos)
   (with-open-file (stream "informe-ejecucion-semaforo.txt" 
@@ -118,9 +123,7 @@
                         (third registro)))  
             datos)
     
-    (format stream "~% --- Fin del Informe ---")nil))
+    (format stream "~% --- Fin del Informe ---")
+    nil)
+)
 
-;; -------------------------
-;; Ejemplos de informe (Extensión 2)
-;; -------------------------
-;; Reglas actuales: (informe '((1717511415 en-rojo en-verde) (1717511535 en-verde en-amarillo)))

@@ -356,6 +356,90 @@
     nil)
 )
 
+;; ============================================================================
+;; FASE 2 - CL-JSON
+;; ============================================================================
 
+;; ========================================================
+;; FUNCIÓN: cargar-configuracion
+;; NATURALEZA: Impura (lee informacion desde un archivo externo)
+;; ESTRATEGIA: Manejo de archivos y decodificación JSON
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun cargar-configuracion()
+  (with-open-file (stream "config.json" :direction :input)
+    (let ((contenido (make-string (file-length stream))))
+      (read-sequence contenido stream)
+      (mapcar (lambda (par)
+                (list (car par) (cdr par)))
+              (json:decode-json-from-string contenido)))))
 
+;; ========================================================
+;; FUNCIÓN: obtener-tiempo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Funcion de Orden Superior (find-if y lambda)
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun obtener-tiempo(color configuracion)
+  (second
+   (find-if (lambda (par)
+              (equal (first par) color))
+            configuracion)))
+;;el uso correcto es (obtener-tiempo :<color> (cargar-configuracion))
 
+;; ========================================================
+;; FUNCIÓN: timer-json
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional simple
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun timer-json(tiempo-unix configuracion)
+  (let* ((rojo (obtener-tiempo :rojo configuracion))
+         (verde (obtener-tiempo :verde configuracion))
+         (amarillo (obtener-tiempo :amarillo configuracion))
+         (total (+ rojo verde amarillo))
+         (resto (mod tiempo-unix total)))
+    (cond
+      ((< resto rojo) 'en-rojo)
+      ((< resto (+ rojo verde)) 'en-verde)
+      (t 'en-amarillo))))
+
+;; ========================================================
+;; FUNCIÓN: duracion-ciclo-json
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Función aritmettica simple
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun duracion-ciclo-json(configuracion)
+  (+ (obtener-tiempo :rojo configuracion)
+     (obtener-tiempo :verde configuracion)
+     (obtener-tiempo :amarillo configuracion)))
+
+;; ========================================================
+;; FUNCIÓN: ciclos-por-tiempo-json
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Función aritmetica simple
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun ciclos-por-tiempo-json(minutos configuracion)
+  (nth-value 0
+    (floor (/ (* minutos 60) (duracion-ciclo-json configuracion)))))
+
+;; ========================================================
+;; FUNCIÓN: distribucion-porcentual-json
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Función aritmetica simple
+;; IMPACTO: No destructiva
+;; ========================================================
+(defun distribucion-porcentual-json(configuracion)
+  (let* ((rojo (obtener-tiempo :rojo configuracion))
+         (amarillo (obtener-tiempo :amarillo configuracion))
+         (verde (obtener-tiempo :verde configuracion))
+         (total (+ rojo amarillo verde)))
+    (list
+     (list 'porcentaje-rojo
+           (* (/ rojo total) 100.0))
+     (list 'porcentaje-amarillo
+           (* (/ amarillo total) 100.0))
+     (list 'porcentaje-verde
+           (* (/ verde total) 100.0)))))

@@ -212,8 +212,8 @@
 ;; ============================================================================
 ;; ITERACIÓN 2 - EXTENSIÓN 1: Intermitencia de Seguridad
 ;; ============================================================================
-
-  ;; REQUERIMIENTO 1
+ 
+  ;; REQUERIMIENTO 1 - Actualizado a Extension 1
   ;; ============================================================
   ;; FUNCION: transicion
   ;; NATURALEZA: pura (dado el color actual y al que se desea cambiar retorna una lista con el color actual y la accion a realzar)
@@ -233,7 +233,7 @@
     )
   )
 
-  ;; REQUERIMIENTO 2
+  ;; REQUERIMIENTO 2 - Actualizado a Extension 1
 ;; ========================================================
 ;; FUNCIÓN: timer
 ;; NATURALEZA: Pura (Dado un timestamp devuelve siempre el mismo color)
@@ -253,21 +253,7 @@
   )
 )
 
-;; REQUERIMIENTO 3
-  ;; ============================================================
-  ;; FUNCION: cambios-estado
-  ;; NATURALEZA: Impura (Imprime en la terminal de ejecucion)
-  ;; ESTRATEGIA: Uso de la funcion incorporada 'format' para salida de texto
-  ;; IMPACTO: No destructiva
-  ;; ============================================================ 
-
-(defun cambios-estado(tiempo-unix color-anterior color-nuevo)
-   (format t "Tiempo ~A: la luz ha cambiado de ~A a ~A~%" 
-        tiempo-unix color-anterior color-nuevo
-  )
-)
-
-;; REQUERIMIENTO 4
+;; REQUERIMIENTO 4 - Actualizado a Extension 1
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo
 ;; NATURALEZA: Pura (No produce efectos secundarios y siempre devuelve el mismo resultado)
@@ -278,35 +264,7 @@
   (+ duracion-rojo duracion-amarillo duracion-verde rojo-intermitente amarillo-intermitente verde-intermitente)
 )
 
-;; ========================================================
-;; FUNCIÓN: recomendacion-ciclo
-;; NATURALEZA: Pura (Para una misma duración de ciclo siempre devuelve la misma recomendación y no produce efectos secundarios)
-;; ESTRATEGIA: Función Condicional simple (Implementada mediante cond)
-;; IMPACTO: No destructiva
-;; ========================================================
-(defun recomendacion-ciclo(duracion)
-  (cond 
-    ((< duracion 35)
-      "Ciclo demasiado corto")
-    ((> duracion 150)
-      "Ciclo demasiado largo")
-    (t
-      "Ciclo en rango óptimo")
-  )
-)
-
-;; REQUERIMIENTO 5
-;; ============================================================
-;; FUNCION: ciclos-por-tiempo
-;; NATURALEZA: Pura (Dado un argumento, siempre le corresponde el mismo resultado)
-;; ESTRATEGIA:  Función aritmetica simple / Combinación de operaciones
-;; IMPACTO: no destructiva
-;; ============================================================ 
-(defun ciclos-por-tiempo (minutos)
-    (nth-value 0(floor (* minutos 60) 225))
-)
-
-;; REQUERIMIENTO 6
+;; REQUERIMIENTO 6 - Actualizado a Extension 1
 
 ;; ========================================================
 ;; FUNCIÓN: distribucion-porcentual

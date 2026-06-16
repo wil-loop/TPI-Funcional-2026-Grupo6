@@ -4,8 +4,6 @@
 	;; NATURALEZA: pura (dado el color actual y al que se desea cambiar retorna una lista con el color actual y la accion a realzar)
 	;; ESTRATEGIA:  funcion simple implementada con condicionales (cond)
 	;; IMPACTO: no destructiva
-	;; ============================================================ 
-
 	(defun transicion (color-actual cambiar-a)
 		(cond 
 			((and(equal color-actual 'en-rojo) (equal cambiar-a 'verde)) '('en-rojo "cambiar-a-verde")) 
@@ -27,7 +25,7 @@
     (cond
       ((<= resto 89)'en-rojo)
       ((<= resto 95)'en-amarillo)
-      (t ' n-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
+      (t 'en-verde) ;si no se encuentra en ninguno de los anteriores rangos quiere decir que esta en verde.
     )
   )
 )
@@ -39,7 +37,6 @@
   ;; ESTRATEGIA: Uso de la funcion incorporada 'format' para salida de texto
   ;; IMPACTO: No destructiva
   ;; ============================================================ 
-
 (defun cambios-estado(tiempo-unix color-anterior color-nuevo)
    (format t "Tiempo ~A: la luz ha cambiado de ~A a ~A~%" 
         tiempo-unix color-anterior color-nuevo))
@@ -54,6 +51,9 @@
 (defun duracion-ciclo(rojo  verde amarillo)
 	(+ rojo verde amarillo)
 )
+
+;; (duracion-ciclo 90 6 120)
+
 
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
@@ -98,6 +98,7 @@
 	   (list 'porcentaje-amarillo (* (/ amarillo  total) 100.0)))
 	  ))
 
+
 ;; REQUERIMIENTO 7: EJEMPLOS DE USO
 
 
@@ -106,10 +107,12 @@
 ;; -------------------------
 
 ;; Reglas actuales
-;; (transicion 'en-rojo 'amarillo) (transicion 'en-amarillo 'verde) (transicion 'en-rojo 'verde)
+;; (transicion 'en-rojo 'verde)
+;;(transicion 'en-amarillo 'rojo)
+;; (transicion 'verde 'rojo)
 
 ;; Caso alternativo
-;; (transicion 'en-verde 'amarillo) Caso contemplado de transicion invalida, no provoca un fallo en el programa
+;; (transicion 'en-verde 'rojo) Caso contemplado de transicion invalida, no provoca un fallo en el programa
 
 ;; Caso inválido
 ;; (transicion 'en-verde) Uso inadecuado de la funcion (falta de parametros)
@@ -136,10 +139,10 @@
 ;; -------------------------
 
 ;; Reglas actuales
-;; (cambios-estado "rojo" "verde")
+;; (cambios-estado 12334 "rojo" "verde")
 
 ;; Caso alternativo
-;; (cambios-estado "verde" "amarillo")
+;; (cambios-estado 1332 "verde" "amarillo")
 
 ;; Caso inválido
 ;; (cambios-estado rojo verde)
@@ -207,8 +210,6 @@
 
 
 
-
-
 ;; ============================================================================
 ;; ITERACIÓN 2 - EXTENSIÓN 1: Intermitencia de Seguridad
 ;; ============================================================================
@@ -232,6 +233,10 @@
       (t (list color-actual 'accion-por-defecto))
     )
   )
+;; EJEMPLO DE USO
+;; (transicion 'en-rojo 'verde)
+;; (transicion 'en-rojo-intermitente 'verde)
+
 
   ;; REQUERIMIENTO 2 - Actualizado a Extension 1
 ;; ========================================================
@@ -252,6 +257,9 @@
     )
   )
 )
+;; REGLAS ACTUALES: 
+;; (timer 89)
+;; (timer 92)
 
 ;; REQUERIMIENTO 4 - Actualizado a Extension 1
 ;; ========================================================
@@ -263,6 +271,9 @@
 (defun duracion-ciclo(duracion-rojo duracion-amarillo duracion-verde rojo-intermitente amarillo-intermitente verde-intermitente)
   (+ duracion-rojo duracion-amarillo duracion-verde rojo-intermitente amarillo-intermitente verde-intermitente)
 )
+
+;; REGLAS ACTUALES: 
+;; (duracion-ciclo 90 6 120 3 3 3)
 
 ;; REQUERIMIENTO 6 - Actualizado a Extension 1
 
@@ -284,8 +295,10 @@
     )
   )
 )
-|#
+;; REGLAS ACTUALES: 
+;; (distribucion-porcentual 90 6 120 3 3 3)
 
+|#
 
 ;; ============================================================================
 ;; ITERACIÓN 2 - EXTENSIÓN 2: PERSISTENCIA DE DATOS
@@ -313,6 +326,8 @@
     (format stream "~% --- Fin del Informe ---")
     nil)
 )
+;; EJEMPLO DE USO
+;; (informe'((100 en-rojo en-verde)(220 en-verde en-amarillo)(226 en-amarillo en-rojo)))
 
 ;; ============================================================================
 ;; FASE 2 - CL-JSON
@@ -331,6 +346,8 @@
       (mapcar (lambda (par)
                 (list (car par) (cdr par)))
               (json:decode-json-from-string contenido)))))
+;; EJEMPLO DE USO
+;;(cargar-configuracion)
 
 ;; ========================================================
 ;; FUNCIÓN: obtener-tiempo
@@ -343,7 +360,9 @@
    (find-if (lambda (par)
               (equal (first par) color))
             configuracion)))
-;;el uso correcto es (obtener-tiempo :<color> (cargar-configuracion))
+;; EJEMPLO DE USO
+;;(obtener-tiempo :rojo (cargar-configuracion))
+;;(obtener-tiempo :verde (cargar-configuracion))
 
 ;; ========================================================
 ;; FUNCIÓN: timer-json
@@ -361,6 +380,9 @@
       ((< resto rojo) 'en-rojo)
       ((< resto (+ rojo verde)) 'en-verde)
       (t 'en-amarillo))))
+;; EJEMPLO DE USO
+;; (timer-json 89(cargar-configuracion))
+;; (timer-json 200 (cargar-configuracion))
 
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo-json
@@ -372,6 +394,8 @@
   (+ (obtener-tiempo :rojo configuracion)
      (obtener-tiempo :verde configuracion)
      (obtener-tiempo :amarillo configuracion)))
+;; EJEMPLO DE USO
+;; (duracion-ciclo-json (cargar-configuracion))
 
 ;; ========================================================
 ;; FUNCIÓN: ciclos-por-tiempo-json
@@ -382,6 +406,9 @@
 (defun ciclos-por-tiempo-json(minutos configuracion)
   (nth-value 0
     (floor (/ (* minutos 60) (duracion-ciclo-json configuracion)))))
+;; EJEMPLO DE USO
+;; (ciclos-por-tiempo-json 6 (cargar-configuracion))
+;; (ciclos-por-tiempo-json 10 (cargar-configuracion))
 
 ;; ========================================================
 ;; FUNCIÓN: distribucion-porcentual-json
@@ -401,3 +428,5 @@
            (* (/ amarillo total) 100.0))
      (list 'porcentaje-verde
            (* (/ verde total) 100.0)))))
+;; EJEMPLO DE USO
+;;(distribucion-porcentual-json (cargar-configuracion))

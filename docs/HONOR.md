@@ -30,6 +30,7 @@ Declaración Jurada: Al subir este archivo al repositorio, declaro bajo compromi
 👤 Integrante 2: Fabio Javier Fernandez - Usuario GitHub: fernandezfabiojavier-dot
 
 1. Código en Common Lisp (Fase 1 y 2)
+
 •	[X] Desarrollo 100% Humano: El código fue diseñado, escrito y depurado puramente por mí/el grupo sin intervención de IA.
 
 •	[ ] Asistencia de IA (Co-piloto): Utilicé IA como un tutor o documentación dinámica (búsqueda de errores sintácticos, explicación de funciones primitivas), pero la lógica y clasificación del semáforo fue estructurada por el grupo.
@@ -57,6 +58,7 @@ Declaración Jurada: Al subir este archivo al repositorio, declaro bajo compromi
 👤 Integrante 3: [Gabriel Fava] - Usuario GitHub: [TheGabo1999]
 
 1. Código en Common Lisp (Fase 1 y 2)
+
 [ ] Desarrollo 100% Humano: El código fue diseñado, escrito y depurado puramente por mí/el grupo sin intervención de IA.
 
 [X] Asistencia de IA (Co-piloto): Utilicé IA como un tutor o documentación dinámica (búsqueda de errores sintácticos, explicación de funciones primitivas), pero la lógica y clasificación del semáforo fue estructurada por el grupo.

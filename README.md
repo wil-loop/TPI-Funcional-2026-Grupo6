@@ -47,4 +47,4 @@ Al alojar este código en el presente repositorio, el equipo declara bajo compro
 
 ## 🔗 Enlaces de Interés
 
-* [▶️ Demostración del Sistema (Video en YouTube)]([https://youtu.be/ri8m7FIjv64])
+* [▶️ Demostración del Sistema (Video en YouTube)](https://youtu.be/ri8m7Fljv64)
